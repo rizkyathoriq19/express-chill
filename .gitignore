@@ -1,0 +1,5 @@
+.env.local
+
+*lock.json
+
+/node_modules

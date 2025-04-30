@@ -8,7 +8,11 @@ const pool = mysql.createPool({
     database: envConfig.DB_NAME,
 }).promise()
 
-const result = await pool.query('SELECT 1 + 1 AS solution')
-console.log('Database connection successful:', result[0][0].solution)
+const result = await pool.query('SELECT VERSION()')
+if (result[0].length === 0) {
+    console.error('Database connection failed')
+    process.exit(1)
+}
+console.log('Database connection successful:', result[0][0]['VERSION()'])
 
 export default pool;
